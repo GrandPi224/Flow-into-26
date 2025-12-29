@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>The 7 F's of Fulfillment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --aventurine: #4A7C59;
+            --tiffany-blue: #0ABAB5;
+            --warm-sand: #E8DCC4;
+            --clay: #B8860B;
+            --deep-charcoal: #1a1a2e;
+            --soft-white: #FAFAFA;
+        }
+
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        min-height: 100vh;
+        color: var(--soft-white);
+        padding: 20px;
+        padding-top: env(safe-area-inset-top, 20px);
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, var(--warm-sand) 0%, var(--clay) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .brand-tag {
+        text-align: center;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        color: var(--tiffany-blue);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .pyramids-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 25px;
+    }
+
+    .pyramid-section {
+        text-align: center;
+    }
+
+    .pyramid-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: var(--tiffany-blue);
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    .pyramid-container {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .pyramid-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .level-title-text {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 700;
+        fill: white;
+        text-anchor: middle;
+    }
+
+    .level-desc-text {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        fill: rgba(255,255,255,0.85);
+        text-anchor: middle;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--tiffany-blue);
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+    }
+
+    h2::after {
+        content: '+';
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: var(--clay);
+        transition: transform 0.3s ease;
+    }
+
+    h2.expanded::after {
+        content: '−';
+    }
+
+    .collapsible-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+    }
+
+    .collapsible-content.expanded {
+        max-height: 2000px;
+        transition: max-height 0.6s ease-in;
+    }
+
+    h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--warm-sand);
+        padding: 14px 0 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        user-select: none;
+    }
+
+    h4::before {
+        content: attr(data-level);
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+
+    h4[data-level="1"]::before { background: var(--aventurine); }
+    h4[data-level="2"]::before { background: #5A8A68; }
+    h4[data-level="3"]::before { background: #6A9877; }
+    h4[data-level="4"]::before { background: var(--tiffany-blue); }
+    h4[data-level="5"]::before { background: #3DC9C4; }
+    h4[data-level="6"]::before { background: var(--clay); }
+    h4[data-level="7"]::before { background: #D4A017; }
+
+    h4::after {
+        content: '›';
+        margin-left: auto;
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.4);
+        transition: transform 0.3s ease;
+    }
+
+    h4.expanded::after {
+        transform: rotate(90deg);
+        color: var(--tiffany-blue);
+    }
+
+    .level-content-detail {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .level-content-detail.expanded {
+        max-height: 500px;
+        transition: max-height 0.4s ease-in;
+    }
+
+    .level-content-detail p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: rgba(255,255,255,0.75);
+        padding: 0 0 16px 38px;
+    }
+
+    .info-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 18px;
+        margin: 12px 0;
+    }
+
+    .info-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.8);
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, rgba(74,124,89,0.2) 0%, rgba(10,186,181,0.2) 100%);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 16px 0;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cta-section h4 {
+        color: var(--warm-sand);
+        padding-bottom: 12px;
+    }
+
+    .cta-section h4::before,
+    .cta-section h4::after {
+        display: none;
+    }
+
+    .cta-section p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.8);
+        padding: 0;
+    }
+
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        color: var(--tiffany-blue);
+        margin-bottom: 6px;
+    }
+
+    .footer-tagline {
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.5);
+        letter-spacing: 1px;
+    }
+
+    .disclaimer {
+        margin-top: 15px;
+        font-size: 0.65rem;
+        color: rgba(255,255,255,0.3);
+        line-height: 1.5;
+    }
+
+    .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        margin: 10px 0;
+    }
+
+    .comparison-arrow {
+        text-align: center;
+        font-size: 1.5rem;
+        color: var(--clay);
+        margin: 10px 0;
+    }
+</style>
+```
+
+</head>
+<body>
+    <header>
+        <h1>The 7 F's of Fulfillment</h1>
+        <p class="brand-tag">From "Working-Class Millionaire"</p>
+    </header>
+
+```
+<div class="pyramids-wrapper">
+    
+    <!-- Maslow's Hierarchy - True Triangle -->
+    <div class="pyramid-section">
+        <div class="pyramid-title">Maslow's Hierarchy of Needs</div>
+        <div class="pyramid-container">
+            <svg class="pyramid-svg" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                <!-- 
+                True triangle: apex at (150,10), base corners at (0,240) and (300,240)
+                5 equal horizontal slices, each 46px tall
+                Left edge formula: x = 150 - (y-10) * (150/230)
+                Right edge formula: x = 150 + (y-10) * (150/230)
+                y=10: x=150 (apex)
+                y=56: x=120, 180
+                y=102: x=90, 210
+                y=148: x=60, 240
+                y=194: x=30, 270
+                y=240: x=0, 300 (base)
+                -->
+                
+                <!-- Level 5 - Self-actualization (Top) - Purple - y: 10 to 56 -->
+                <polygon points="150,10 180,56 120,56" fill="#8B5CF6"/>
+                <text x="150" y="36" class="level-title-text" font-size="7">Self-actualization</text>
+                <text x="150" y="48" class="level-desc-text" font-size="5">desire to become the most one can be</text>
+
+                <!-- Level 4 - Esteem - Blue - y: 56 to 102 -->
+                <polygon points="120,56 180,56 210,102 90,102" fill="#3B82F6"/>
+                <text x="150" y="74" class="level-title-text" font-size="9">Esteem</text>
+                <text x="150" y="88" class="level-desc-text" font-size="5">respect, self-esteem, status, recognition, strength, freedom</text>
+
+                <!-- Level 3 - Love and belonging - Green - y: 102 to 148 -->
+                <polygon points="90,102 210,102 240,148 60,148" fill="#22C55E"/>
+                <text x="150" y="120" class="level-title-text" font-size="9">Love and belonging</text>
+                <text x="150" y="134" class="level-desc-text" font-size="5">friendship, intimacy, family, sense of connection</text>
+
+                <!-- Level 2 - Safety needs - Yellow - y: 148 to 194 -->
+                <polygon points="60,148 240,148 270,194 30,194" fill="#EAB308"/>
+                <text x="150" y="166" class="level-title-text" font-size="9">Safety needs</text>
+                <text x="150" y="180" class="level-desc-text" font-size="5">personal security, employment, resources, health, property</text>
+
+                <!-- Level 1 - Physiological needs (Base) - Red - y: 194 to 240 -->
+                <polygon points="30,194 270,194 300,240 0,240" fill="#EF4444"/>
+                <text x="150" y="212" class="level-title-text" font-size="9">Physiological needs</text>
+                <text x="150" y="226" class="level-desc-text" font-size="5">air, water, food, shelter, sleep, clothing, reproduction</text>
+
+                <!-- Outer triangle border -->
+                <polygon points="150,10 300,240 0,240" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="comparison-arrow">⟱</div>
+
+    <!-- 7 F's Pyramid - True Triangle -->
+    <div class="pyramid-section">
+        <div class="pyramid-title">The 7 F's of Fulfillment</div>
+        <div class="pyramid-container">
+            <svg class="pyramid-svg" viewBox="0 0 300 295" xmlns="http://www.w3.org/2000/svg">
+                <!-- 
+                True triangle: apex at (150,10), base corners at (0,285) and (300,285)
+                7 equal horizontal slices, each 39.3px tall
+                Left edge: x = 150 - (y-10) * 150/275
+                Right edge: x = 150 + (y-10) * 150/275
+                -->
+                
+                <defs>
+                    <linearGradient id="fgrad7" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#D4A017"/>
+                        <stop offset="100%" style="stop-color:#B8860B"/>
+                    </linearGradient>
+                    <linearGradient id="fgrad6" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#B8860B"/>
+                        <stop offset="100%" style="stop-color:#9A7209"/>
+                    </linearGradient>
+                    <linearGradient id="fgrad5" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3DC9C4"/>
+                        <stop offset="100%" style="stop-color:#0ABAB5"/>
+                    </linearGradient>
+                    <linearGradient id="fgrad4" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0ABAB5"/>
+                        <stop offset="100%" style="stop-color:#089B97"/>
+                    </linearGradient>
+                    <linearGradient id="fgrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6A9877"/>
+                        <stop offset="100%" style="stop-color:#5A8A68"/>
+                    </linearGradient>
+                    <linearGradient id="fgrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#5A8A68"/>
+                        <stop offset="100%" style="stop-color:#4A7C59"/>
+                    </linearGradient>
+                    <linearGradient id="fgrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#4A7C59"/>
+                        <stop offset="100%" style="stop-color:#3A6649"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- Level 7 - Flow (Top) - y: 10 to 49.3 -->
+                <polygon points="150,10 171.4,49 128.6,49" fill="url(#fgrad7)"/>
+                <text x="150" y="34" class="level-title-text" font-size="7">Flow</text>
+                <text x="150" y="44" class="level-desc-text" font-size="4">mastery, presence, peak performance</text>
+
+                <!-- Level 6 - Legacy - y: 49 to 88 -->
+                <polygon points="128.6,49 171.4,49 192.7,88 107.3,88" fill="url(#fgrad6)"/>
+                <text x="150" y="64" class="level-title-text" font-size="8">Legacy</text>
+                <text x="150" y="78" class="level-desc-text" font-size="5">meaning, contribution, lasting impact</text>
+
+                <!-- Level 5 - Future - y: 88 to 127 -->
+                <polygon points="107.3,88 192.7,88 214.1,127 85.9,127" fill="url(#fgrad5)"/>
+                <text x="150" y="103" class="level-title-text" font-size="8">Future</text>
+                <text x="150" y="117" class="level-desc-text" font-size="5">vision, planning, long-term investing</text>
+
+                <!-- Level 4 - Friends & Fun - y: 127 to 166 -->
+                <polygon points="85.9,127 214.1,127 235.5,166 64.5,166" fill="url(#fgrad4)"/>
+                <text x="150" y="142" class="level-title-text" font-size="8">Friends & Fun</text>
+                <text x="150" y="156" class="level-desc-text" font-size="5">relationships, joy, celebration, connection</text>
+
+                <!-- Level 3 - Focus & Fulfillment - y: 166 to 205 -->
+                <polygon points="64.5,166 235.5,166 256.8,205 43.2,205" fill="url(#fgrad3)"/>
+                <text x="150" y="181" class="level-title-text" font-size="8">Focus & Fulfillment</text>
+                <text x="150" y="195" class="level-desc-text" font-size="5">purpose, intentionality, meaningful work</text>
+
+                <!-- Level 2 - Fitness & Finances - y: 205 to 244 -->
+                <polygon points="43.2,205 256.8,205 278.2,244 21.8,244" fill="url(#fgrad2)"/>
+                <text x="150" y="220" class="level-title-text" font-size="8">Fitness & Finances</text>
+                <text x="150" y="234" class="level-desc-text" font-size="5">health, wealth, energy, resources</text>
+
+                <!-- Level 1 - Faith & Family (Base) - y: 244 to 285 -->
+                <polygon points="21.8,244 278.2,244 300,285 0,285" fill="url(#fgrad1)"/>
+                <text x="150" y="260" class="level-title-text" font-size="8">Faith & Family</text>
+                <text x="150" y="274" class="level-desc-text" font-size="5">belief, roots, support, belonging</text>
+
+                <!-- Outer triangle border -->
+                <polygon points="150,10 300,285 0,285" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!-- The Framework Section -->
+<h2 onclick="toggleSection(this)">The Framework</h2>
+<div class="collapsible-content">
+    <div class="info-card">
+        <p>The 7 F's builds on Maslow's foundation but expands it for modern wealth-builders. Where Maslow stops at self-actualization, we add <strong>Legacy</strong> (what you leave behind) and <strong>Flow</strong> (the ultimate state of being). Each level supports the ones above it—you can't sustain Flow without Legacy, and none of it matters without Faith & Family to anchor you.</p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- Level Definitions Section -->
+<h2 onclick="toggleSection(this)">Level Definitions</h2>
+<div class="collapsible-content">
+    
+    <h4 data-level="1" onclick="toggleLevel(this)">Faith & Family</h4>
+    <div class="level-content-detail">
+        <p>Your bedrock. Faith—whether spiritual, philosophical, or a deep belief in something greater—provides the "why" behind everything else. Family creates the support system that makes risk-taking possible. Without roots, there's no growth.</p>
+    </div>
+
+    <h4 data-level="2" onclick="toggleLevel(this)">Fitness & Finances</h4>
+    <div class="level-content-detail">
+        <p>Your twin engines. Physical health and financial health power everything above. You can't chase dreams while running on empty—literally or figuratively. These aren't goals in themselves; they're the fuel that makes higher pursuits possible.</p>
+    </div>
+
+    <h4 data-level="3" onclick="toggleLevel(this)">Focus & Fulfillment</h4>
+    <div class="level-content-detail">
+        <p>With your foundation secure and fuel tanks full, you can direct energy intentionally. Focus means choosing what matters and saying no to what doesn't. Fulfillment emerges when daily work aligns with deeper values.</p>
+    </div>
+
+    <h4 data-level="4" onclick="toggleLevel(this)">Friends & Fun</h4>
+    <div class="level-content-detail">
+        <p>Success without celebration is just survival. Meaningful relationships and genuine joy aren't luxuries—they're essential to sustained performance. The journey should be worth taking, not just the destination.</p>
+    </div>
+
+    <h4 data-level="5" onclick="toggleLevel(this)">Future</h4>
+    <div class="level-content-detail">
+        <p>Here you shift from living day-to-day to building something that outlasts today's problems. Future-thinking means investing time, money, and energy in outcomes you may not see for years. It's planting trees whose shade you may never sit under.</p>
+    </div>
+
+    <h4 data-level="6" onclick="toggleLevel(this)">Legacy</h4>
+    <div class="level-content-detail">
+        <p>Legacy isn't about monuments or money—it's about meaning that outlives you. What did you build? Who did you help? What did you teach? Here, your focus shifts from "what can I get?" to "what can I give?"</p>
+    </div>
+
+    <h4 data-level="7" onclick="toggleLevel(this)">Flow</h4>
+    <div class="level-content-detail">
+        <p>The pinnacle. That rare state where challenge meets capability and time disappears. Operating in your zone of genius—work feels like play, and your contribution seems effortless to others. This is where craft becomes calling, and purpose becomes presence.</p>
+    </div>
+
+</div>
+
+<div class="section-divider"></div>
+
+<!-- How It Works Section -->
+<h2 onclick="toggleSection(this)">How the Levels Connect</h2>
+<div class="collapsible-content">
+    <div class="info-card">
+        <p>The hierarchy isn't just a list—it's a support structure. Your <strong>Faith & Family</strong> foundation gives you courage to build <strong>Fitness & Finances</strong>. Those resources enable <strong>Focus & Fulfillment</strong>, which creates space for <strong>Friends & Fun</strong>. With joy in your life, you can think about the <strong>Future</strong>. Future-orientation lets you build a <strong>Legacy</strong>. And when your legacy is secure, you can finally achieve <strong>Flow</strong>—the ultimate state of being.</p>
+    </div>
+    <div class="info-card">
+        <p>Skip a level, and the whole structure becomes unstable. A person chasing Flow while ignoring Fitness will burn out. Someone focused only on Finances without Faith may achieve wealth but find it hollow.</p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- Action Section -->
+<h2 onclick="toggleSection(this)">Your One-Year Assessment</h2>
+<div class="collapsible-content">
+    <div class="cta-section">
+        <h4>Take Action</h4>
+        <p>Rate yourself honestly on each level from 1-10. Where are your gaps? Where are you over-indexed? Often, we pour energy into higher levels while neglecting our foundation—like building a penthouse on a cracked foundation.</p>
+        <br>
+        <p>Over the next twelve months, identify your weakest foundational level and shore it up first. The higher levels will become more accessible once the lower ones are solid. Progress isn't about reaching the top fastest—it's about building a structure that can stand for decades.</p>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-brand">CHIP | Wealth Management for Main Street</div>
+    <div class="footer-tagline">1st Discount Brokerage</div>
+    <p class="disclaimer">This framework is for educational and personal development purposes only. It is not investment advice or a recommendation to buy or sell any securities.</p>
+</footer>
+
+<script>
+    function toggleSection(header) {
+        header.classList.toggle('expanded');
+        const content = header.nextElementSibling;
+        content.classList.toggle('expanded');
+    }
+
+    function toggleLevel(header) {
+        header.classList.toggle('expanded');
+        const content = header.nextElementSibling;
+        content.classList.toggle('expanded');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const firstSection = document.querySelector('h2');
+        if (firstSection) {
+            firstSection.classList.add('expanded');
+            firstSection.nextElementSibling.classList.add('expanded');
+        }
+    });
+</script>
+```
+
+</body>
+</html>
