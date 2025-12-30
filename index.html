@@ -36,7 +36,6 @@
         padding-bottom: env(safe-area-inset-bottom, 20px);
     }
 
-    /* Container for centering content on large screens */
     .main-container {
         max-width: 1400px;
         margin: 0 auto;
@@ -49,66 +48,70 @@
 
     h1 {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-size: 2.2rem;
         font-weight: 700;
         margin-bottom: 8px;
         background: linear-gradient(135deg, var(--warm-sand) 0%, var(--clay) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        letter-spacing: 12px;
+        letter-spacing: 8px;
     }
 
     .brand-tag {
-        font-size: 0.75rem;
-        letter-spacing: 3px;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
         color: var(--tiffany-blue);
         text-transform: uppercase;
+        margin-bottom: 20px;
     }
 
     /* ========================================
-       PYRAMIDS LAYOUT - RESPONSIVE
+       PYRAMIDS - RESPONSIVE WRAPPER
        ======================================== */
     
     .pyramids-wrapper {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 30px;
-        margin-bottom: 40px;
-        justify-items: center;
-        align-items: start;
+        margin-bottom: 25px;
+        align-items: center;
     }
 
-    /* Tablet and Desktop: side by side */
     @media (min-width: 900px) {
         .pyramids-wrapper {
-            grid-template-columns: 1fr 1fr;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
             gap: 40px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
         }
     }
 
     .pyramid-section {
+        text-align: center;
         width: 100%;
         max-width: 500px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    }
+
+    @media (min-width: 900px) {
+        .pyramid-section {
+            flex: 0 1 500px;
+        }
     }
 
     .pyramid-container {
         width: 100%;
+        margin: 0 auto;
         display: flex;
         justify-content: center;
     }
 
     .pyramid-svg {
         width: 100%;
-        max-width: 480px;
+        max-width: 500px;
         height: auto;
         display: block;
+        overflow: visible;
     }
 
     .level-title-text {
@@ -130,11 +133,10 @@
         stroke-width: 0.5;
     }
 
-    /* Hide connector lines and descriptions on mobile */
-    @media (max-width: 600px) {
+    @media (max-width: 550px) {
         .connector-line,
         .level-desc-text {
-            display: none;
+            opacity: 0;
         }
     }
 
@@ -142,20 +144,23 @@
        ACCORDION SECTIONS
        ======================================== */
 
+    .content-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
     h2 {
         font-family: 'Playfair Display', serif;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: var(--tiffany-blue);
-        padding: 18px 0;
+        padding: 16px 0;
         border-bottom: 1px solid rgba(255,255,255,0.1);
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
         user-select: none;
-        max-width: 900px;
-        margin: 0 auto;
     }
 
     h2::after {
@@ -175,12 +180,10 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.4s ease-out;
-        max-width: 900px;
-        margin: 0 auto;
     }
 
     .collapsible-content.expanded {
-        max-height: 4000px;
+        max-height: 3000px;
         transition: max-height 0.6s ease-in;
     }
 
@@ -252,20 +255,20 @@
         background: rgba(255,255,255,0.03);
         border: 1px solid rgba(255,255,255,0.1);
         border-radius: 12px;
-        padding: 20px;
-        margin: 16px 0;
+        padding: 18px;
+        margin: 12px 0;
     }
 
     .info-card p {
-        font-size: 0.95rem;
-        line-height: 1.7;
+        font-size: 0.9rem;
+        line-height: 1.6;
         color: rgba(255,255,255,0.8);
     }
 
     .cta-section {
         background: linear-gradient(135deg, rgba(74,124,89,0.2) 0%, rgba(10,186,181,0.2) 100%);
         border-radius: 12px;
-        padding: 24px;
+        padding: 20px;
         margin: 16px 0;
         border: 1px solid rgba(255,255,255,0.1);
     }
@@ -281,8 +284,8 @@
     }
 
     .cta-section p {
-        font-size: 0.95rem;
-        line-height: 1.7;
+        font-size: 0.9rem;
+        line-height: 1.6;
         color: rgba(255,255,255,0.8);
         padding: 0;
     }
@@ -290,8 +293,7 @@
     .section-divider {
         height: 1px;
         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        margin: 16px auto;
-        max-width: 900px;
+        margin: 10px 0;
     }
 
     /* ========================================
@@ -305,33 +307,20 @@
         padding: 20px 0;
     }
 
-    /* Desktop: side-by-side layout for wheel and controls */
-    @media (min-width: 1000px) {
+    @media (min-width: 1100px) {
         .wheel-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .wheel-wrapper {
-            justify-self: end;
-        }
-        
-        .wheel-controls {
-            justify-self: start;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 50px;
         }
     }
 
     .wheel-wrapper {
         position: relative;
         width: 100%;
-        max-width: 520px;
+        max-width: 500px;
+        margin: 0 auto;
     }
 
     .wheel-svg {
@@ -361,7 +350,7 @@
 
     .wheel-label {
         font-family: 'Source Sans Pro', sans-serif;
-        font-size: 22px;
+        font-size: 24px;
         font-weight: 600;
         fill: var(--soft-white);
         pointer-events: none;
@@ -398,7 +387,11 @@
         stroke-width: 2;
     }
 
-    /* Rating Panel */
+    .wheel-controls {
+        width: 100%;
+        max-width: 500px;
+    }
+
     .rating-panel {
         background: rgba(30, 35, 50, 0.95);
         border: 1px solid rgba(255,255,255,0.15);
@@ -406,7 +399,6 @@
         padding: 20px;
         margin-top: 20px;
         width: 100%;
-        max-width: 520px;
         opacity: 0;
         transform: translateY(10px);
         transition: all 0.3s ease;
@@ -419,7 +411,7 @@
         pointer-events: all;
     }
 
-    @media (min-width: 1000px) {
+    @media (min-width: 1100px) {
         .rating-panel {
             margin-top: 0;
         }
@@ -455,20 +447,20 @@
 
     .rating-scale {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         justify-content: space-between;
     }
 
     .rating-btn {
         flex: 1;
         aspect-ratio: 1;
-        max-width: 44px;
+        max-width: 40px;
         border: 2px solid rgba(255,255,255,0.25);
         background: rgba(255,255,255,0.05);
         border-radius: 50%;
         color: rgba(255,255,255,0.6);
         font-family: 'Source Sans Pro', sans-serif;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -494,7 +486,6 @@
         color: rgba(255,255,255,0.4);
     }
 
-    /* Score Summary */
     .score-summary {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -502,15 +493,12 @@
         margin-top: 20px;
         padding-top: 20px;
         border-top: 1px solid rgba(255,255,255,0.1);
-        width: 100%;
-        max-width: 520px;
     }
 
-    @media (min-width: 1000px) {
+    @media (min-width: 1100px) {
         .score-summary {
-            margin-top: 0;
-            padding-top: 0;
             border-top: none;
+            padding-top: 0;
         }
     }
 
@@ -518,9 +506,9 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 12px 14px;
+        padding: 10px 12px;
         background: rgba(255,255,255,0.03);
-        border-radius: 10px;
+        border-radius: 8px;
         cursor: pointer;
         transition: all 0.2s ease;
         border: 1px solid transparent;
@@ -543,7 +531,7 @@
     }
 
     .score-label {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: rgba(255,255,255,0.7);
         flex: 1;
         white-space: nowrap;
@@ -552,7 +540,7 @@
     }
 
     .score-value {
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 700;
         color: var(--tiffany-blue);
         min-width: 24px;
@@ -563,36 +551,27 @@
         color: rgba(255,255,255,0.25);
     }
 
-    /* Total Score */
     .total-score {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 15px;
         margin-top: 20px;
-        padding: 20px;
+        padding: 18px;
         background: linear-gradient(135deg, rgba(74,124,89,0.15) 0%, rgba(10,186,181,0.15) 100%);
         border-radius: 12px;
         border: 1px solid rgba(255,255,255,0.1);
-        width: 100%;
-        max-width: 520px;
-    }
-
-    @media (min-width: 1000px) {
-        .total-score {
-            margin-top: 0;
-        }
     }
 
     .total-label {
         font-family: 'Playfair Display', serif;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: var(--warm-sand);
     }
 
     .total-value {
         font-family: 'Source Sans Pro', sans-serif;
-        font-size: 2.2rem;
+        font-size: 2rem;
         font-weight: 700;
         color: var(--tiffany-blue);
     }
@@ -602,7 +581,6 @@
         color: rgba(255,255,255,0.4);
     }
 
-    /* Reset Button */
     .reset-btn {
         display: block;
         margin: 20px auto 0;
@@ -622,90 +600,66 @@
         color: var(--clay);
     }
 
-    @media (min-width: 1000px) {
-        .reset-btn {
-            margin: 0;
-            width: 100%;
-            max-width: 520px;
-        }
-    }
-
-    /* ========================================
-       FOOTER
-       ======================================== */
-
     footer {
-        margin-top: 40px;
+        margin-top: 30px;
         text-align: center;
-        padding: 24px 0;
+        padding: 20px 0;
         border-top: 1px solid rgba(255,255,255,0.1);
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     .footer-brand {
         font-family: 'Playfair Display', serif;
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: var(--tiffany-blue);
         margin-bottom: 6px;
     }
 
     .footer-tagline {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: rgba(255,255,255,0.5);
         letter-spacing: 1px;
     }
 
     .disclaimer {
-        margin-top: 16px;
-        font-size: 0.7rem;
+        margin-top: 15px;
+        font-size: 0.65rem;
         color: rgba(255,255,255,0.3);
         line-height: 1.5;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
     }
 
-    /* ========================================
-       MOBILE REFINEMENTS
-       ======================================== */
+    @media (min-width: 900px) {
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 12px;
+        }
+
+        .brand-tag {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+    }
 
     @media (max-width: 480px) {
-        body {
-            padding: 16px;
-        }
-
-        h1 {
-            letter-spacing: 8px;
-        }
-
-        .wheel-label {
-            font-size: 18px;
-        }
-
-        .rating-btn {
-            max-width: 34px;
-            font-size: 0.8rem;
-        }
-
         .score-summary {
             grid-template-columns: 1fr;
         }
-
-        .score-label {
-            font-size: 0.9rem;
+        
+        .wheel-label {
+            font-size: 20px;
         }
-    }
-
-    /* Large desktop refinements */
-    @media (min-width: 1400px) {
-        .pyramids-wrapper {
-            gap: 60px;
-        }
-
-        .pyramid-svg {
-            max-width: 520px;
+        
+        .rating-btn {
+            max-width: 32px;
+            font-size: 0.8rem;
         }
     }
 </style>
@@ -722,423 +676,356 @@
 ```
     <div class="pyramids-wrapper">
         
-        <!-- Chip Pyramid - FIRST -->
+        <!-- CHIP Pyramid - EXACT ORIGINAL -->
         <div class="pyramid-section">
             <div class="pyramid-container">
-                <svg class="pyramid-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Level 7 - Flow (Top) - Purple -->
-                    <polygon points="180,20 206,68 154,68" fill="#8B5CF6"/>
-                    <text x="180" y="50" class="level-title-text" font-size="8">Flow</text>
-                    <line x1="206" y1="44" x2="370" y2="44" class="connector-line"/>
-                    <text x="375" y="41" class="level-desc-text" font-size="6">mastery, presence,</text>
-                    <text x="375" y="51" class="level-desc-text" font-size="6">peak performance</text>
+                <svg class="pyramid-svg" viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="180,10 206,58 154,58" fill="#8B5CF6"/>
+                    <text x="180" y="40" class="level-title-text" font-size="8">Flow</text>
+                    <line x1="206" y1="34" x2="370" y2="34" class="connector-line"/>
+                    <text x="375" y="31" class="level-desc-text" font-size="6">mastery, presence,</text>
+                    <text x="375" y="41" class="level-desc-text" font-size="6">peak performance</text>
 
-                    <!-- Level 6 - Legacy - Pink -->
-                    <polygon points="154,68 206,68 232,116 128,116" fill="#EC4899"/>
-                    <text x="180" y="96" class="level-title-text" font-size="9">Legacy</text>
-                    <line x1="232" y1="92" x2="370" y2="92" class="connector-line"/>
-                    <text x="375" y="89" class="level-desc-text" font-size="6">meaning, contribution,</text>
-                    <text x="375" y="99" class="level-desc-text" font-size="6">lasting impact</text>
+                    <polygon points="154,58 206,58 232,106 128,106" fill="#EC4899"/>
+                    <text x="180" y="86" class="level-title-text" font-size="9">Legacy</text>
+                    <line x1="232" y1="82" x2="370" y2="82" class="connector-line"/>
+                    <text x="375" y="79" class="level-desc-text" font-size="6">meaning, contribution,</text>
+                    <text x="375" y="89" class="level-desc-text" font-size="6">lasting impact</text>
 
-                    <!-- Level 5 - Future - Blue -->
-                    <polygon points="128,116 232,116 258,164 102,164" fill="#3B82F6"/>
-                    <text x="180" y="144" class="level-title-text" font-size="9">Future</text>
-                    <line x1="258" y1="140" x2="370" y2="140" class="connector-line"/>
-                    <text x="375" y="137" class="level-desc-text" font-size="6">vision, planning,</text>
-                    <text x="375" y="147" class="level-desc-text" font-size="6">long-term investing</text>
+                    <polygon points="128,106 232,106 258,154 102,154" fill="#3B82F6"/>
+                    <text x="180" y="134" class="level-title-text" font-size="9">Future</text>
+                    <line x1="258" y1="130" x2="370" y2="130" class="connector-line"/>
+                    <text x="375" y="127" class="level-desc-text" font-size="6">vision, planning,</text>
+                    <text x="375" y="137" class="level-desc-text" font-size="6">long-term investing</text>
 
-                    <!-- Level 4 - Friends & Fun - Teal -->
-                    <polygon points="102,164 258,164 284,212 76,212" fill="#14B8A6"/>
-                    <text x="180" y="192" class="level-title-text" font-size="9">Friends & Fun</text>
-                    <line x1="284" y1="188" x2="370" y2="188" class="connector-line"/>
-                    <text x="375" y="185" class="level-desc-text" font-size="6">relationships, joy,</text>
-                    <text x="375" y="195" class="level-desc-text" font-size="6">celebration, connection</text>
+                    <polygon points="102,154 258,154 284,202 76,202" fill="#14B8A6"/>
+                    <text x="180" y="182" class="level-title-text" font-size="9">Friends & Fun</text>
+                    <line x1="284" y1="178" x2="370" y2="178" class="connector-line"/>
+                    <text x="375" y="175" class="level-desc-text" font-size="6">relationships, joy,</text>
+                    <text x="375" y="185" class="level-desc-text" font-size="6">celebration, connection</text>
 
-                    <!-- Level 3 - Focus & Fulfillment - Brown -->
-                    <polygon points="76,212 284,212 310,260 50,260" fill="#A16207"/>
-                    <text x="180" y="240" class="level-title-text" font-size="9">Focus & Fulfillment</text>
-                    <line x1="310" y1="236" x2="370" y2="236" class="connector-line"/>
-                    <text x="375" y="233" class="level-desc-text" font-size="6">purpose, intentionality,</text>
-                    <text x="375" y="243" class="level-desc-text" font-size="6">meaningful work</text>
+                    <polygon points="76,202 284,202 310,250 50,250" fill="#A16207"/>
+                    <text x="180" y="230" class="level-title-text" font-size="9">Focus & Fulfillment</text>
+                    <line x1="310" y1="226" x2="370" y2="226" class="connector-line"/>
+                    <text x="375" y="223" class="level-desc-text" font-size="6">purpose, intentionality,</text>
+                    <text x="375" y="233" class="level-desc-text" font-size="6">meaningful work</text>
 
-                    <!-- Level 2 - Fitness & Finances - Yellow -->
-                    <polygon points="50,260 310,260 336,308 24,308" fill="#EAB308"/>
-                    <text x="180" y="288" class="level-title-text" font-size="9">Fitness & Finances</text>
-                    <line x1="336" y1="284" x2="370" y2="284" class="connector-line"/>
-                    <text x="375" y="281" class="level-desc-text" font-size="6">health, wealth,</text>
-                    <text x="375" y="291" class="level-desc-text" font-size="6">energy, resources</text>
+                    <polygon points="50,250 310,250 336,298 24,298" fill="#EAB308"/>
+                    <text x="180" y="278" class="level-title-text" font-size="9">Fitness & Finances</text>
+                    <line x1="336" y1="274" x2="370" y2="274" class="connector-line"/>
+                    <text x="375" y="271" class="level-desc-text" font-size="6">health, wealth,</text>
+                    <text x="375" y="281" class="level-desc-text" font-size="6">energy, resources</text>
 
-                    <!-- Level 1 - Faith & Family (Base) - Orange -->
-                    <polygon points="24,308 336,308 360,356 0,356" fill="#F97316"/>
-                    <text x="180" y="336" class="level-title-text" font-size="9">Faith & Family</text>
-                    <line x1="360" y1="332" x2="370" y2="332" class="connector-line"/>
-                    <text x="375" y="329" class="level-desc-text" font-size="6">belief, roots,</text>
-                    <text x="375" y="339" class="level-desc-text" font-size="6">support, belonging</text>
+                    <polygon points="24,298 336,298 360,346 0,346" fill="#F97316"/>
+                    <text x="180" y="326" class="level-title-text" font-size="9">Faith & Family</text>
+                    <line x1="360" y1="322" x2="370" y2="322" class="connector-line"/>
+                    <text x="375" y="319" class="level-desc-text" font-size="6">belief, roots,</text>
+                    <text x="375" y="329" class="level-desc-text" font-size="6">support, belonging</text>
 
-                    <!-- Outer triangle border -->
-                    <polygon points="180,20 360,356 0,356" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                    
-                    <!-- Title below pyramid -->
-                    <text x="180" y="385" class="level-title-text" font-size="18" fill="#0ABAB5" font-family="Playfair Display, serif">Chip</text>
+                    <polygon points="180,10 360,346 0,346" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                    <text x="180" y="372" class="level-title-text" font-size="16" fill="#0ABAB5" font-family="Playfair Display, serif">Chip</text>
                 </svg>
             </div>
         </div>
 
-        <!-- Maslow's Hierarchy - SECOND -->
+        <!-- MASLOW Pyramid - EXACT ORIGINAL FROM YOUR CODE -->
         <div class="pyramid-section">
             <div class="pyramid-container">
-                <svg class="pyramid-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Adjusted to match CHIP pyramid height -->
-                    <!-- Level 5 - Self-actualization (Top) - Purple -->
-                    <polygon points="180,68 220,136 140,136" fill="#8B5CF6"/>
-                    <text x="180" y="96" class="level-title-text" font-size="8">Self</text>
-                    <text x="180" y="110" class="level-title-text" font-size="8">actualization</text>
-                    <line x1="220" y1="102" x2="370" y2="102" class="connector-line"/>
-                    <text x="375" y="99" class="level-desc-text" font-size="6">desire to become the</text>
-                    <text x="375" y="109" class="level-desc-text" font-size="6">most that one can be</text>
+                <svg class="pyramid-svg" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="180,10 216,66 144,66" fill="#8B5CF6"/>
+                    <text x="180" y="34" class="level-title-text" font-size="8">Self</text>
+                    <text x="180" y="48" class="level-title-text" font-size="8">actualization</text>
+                    <line x1="216" y1="38" x2="370" y2="38" class="connector-line"/>
+                    <text x="375" y="35" class="level-desc-text" font-size="6">desire to become the</text>
+                    <text x="375" y="45" class="level-desc-text" font-size="6">most that one can be</text>
 
-                    <!-- Level 4 - Esteem - Blue -->
-                    <polygon points="140,136 220,136 260,204 100,204" fill="#3B82F6"/>
-                    <text x="180" y="174" class="level-title-text" font-size="10">Esteem</text>
-                    <line x1="260" y1="170" x2="370" y2="170" class="connector-line"/>
-                    <text x="375" y="167" class="level-desc-text" font-size="6">respect, self-esteem, status,</text>
-                    <text x="375" y="177" class="level-desc-text" font-size="6">recognition, strength, freedom</text>
+                    <polygon points="144,66 216,66 252,122 108,122" fill="#3B82F6"/>
+                    <text x="180" y="98" class="level-title-text" font-size="10">Esteem</text>
+                    <line x1="252" y1="94" x2="370" y2="94" class="connector-line"/>
+                    <text x="375" y="91" class="level-desc-text" font-size="6">respect, self-esteem, status,</text>
+                    <text x="375" y="101" class="level-desc-text" font-size="6">recognition, strength, freedom</text>
 
-                    <!-- Level 3 - Love and belonging - Green -->
-                    <polygon points="100,204 260,204 300,272 60,272" fill="#22C55E"/>
-                    <text x="180" y="242" class="level-title-text" font-size="10">Love and belonging</text>
-                    <line x1="300" y1="238" x2="370" y2="238" class="connector-line"/>
-                    <text x="375" y="235" class="level-desc-text" font-size="6">friendship, intimacy, family,</text>
-                    <text x="375" y="245" class="level-desc-text" font-size="6">sense of connection</text>
+                    <polygon points="108,122 252,122 288,178 72,178" fill="#22C55E"/>
+                    <text x="180" y="154" class="level-title-text" font-size="10">Love and belonging</text>
+                    <line x1="288" y1="150" x2="370" y2="150" class="connector-line"/>
+                    <text x="375" y="147" class="level-desc-text" font-size="6">friendship, intimacy, family,</text>
+                    <text x="375" y="157" class="level-desc-text" font-size="6">sense of connection</text>
 
-                    <!-- Level 2 - Safety needs - Yellow -->
-                    <polygon points="60,272 300,272 340,340 20,340" fill="#EAB308"/>
-                    <text x="180" y="310" class="level-title-text" font-size="10">Safety needs</text>
-                    <line x1="340" y1="306" x2="370" y2="306" class="connector-line"/>
-                    <text x="375" y="303" class="level-desc-text" font-size="6">personal security, employment,</text>
-                    <text x="375" y="313" class="level-desc-text" font-size="6">resources, health, property</text>
+                    <polygon points="72,178 288,178 324,234 36,234" fill="#EAB308"/>
+                    <text x="180" y="210" class="level-title-text" font-size="10">Safety needs</text>
+                    <line x1="324" y1="206" x2="370" y2="206" class="connector-line"/>
+                    <text x="375" y="203" class="level-desc-text" font-size="6">personal security, employment,</text>
+                    <text x="375" y="213" class="level-desc-text" font-size="6">resources, health, property</text>
 
-                    <!-- Level 1 - Physiological needs (Base) - Red -->
-                    <polygon points="20,340 340,340 360,356 0,356" fill="#EF4444"/>
-                    <text x="180" y="352" class="level-title-text" font-size="9">Physiological needs</text>
-                    <line x1="360" y1="348" x2="370" y2="348" class="connector-line"/>
-                    <text x="375" y="345" class="level-desc-text" font-size="6">air, water, food, shelter,</text>
-                    <text x="375" y="355" class="level-desc-text" font-size="6">sleep, clothing, reproduction</text>
+                    <polygon points="36,234 324,234 360,290 0,290" fill="#EF4444"/>
+                    <text x="180" y="266" class="level-title-text" font-size="10">Physiological needs</text>
+                    <line x1="360" y1="262" x2="370" y2="262" class="connector-line"/>
+                    <text x="375" y="259" class="level-desc-text" font-size="6">air, water, food, shelter,</text>
+                    <text x="375" y="269" class="level-desc-text" font-size="6">sleep, clothing, reproduction</text>
 
-                    <!-- Outer triangle border -->
-                    <polygon points="180,68 360,356 0,356" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                    
-                    <!-- Title below pyramid -->
-                    <text x="180" y="385" class="level-title-text" font-size="18" fill="#0ABAB5" font-family="Playfair Display, serif">Maslow</text>
+                    <polygon points="180,10 360,290 0,290" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                    <text x="180" y="315" class="level-title-text" font-size="16" fill="#0ABAB5" font-family="Playfair Display, serif">Maslow</text>
                 </svg>
             </div>
         </div>
     </div>
 
-    <!-- ========================================
-         WHEEL OF LIFE SECTION
-         ======================================== -->
-    <h2 onclick="toggleSection(this)">Wheel of Life</h2>
-    <div class="collapsible-content">
-        <div class="info-card">
-            <p>Click on each segment of the wheel to rate yourself from 1-10 in each life area. Watch as your personal wheel takes shape—revealing where you're thriving and where you might focus next.</p>
-        </div>
-        
-        <div class="wheel-container">
-            <div class="wheel-wrapper">
-                <svg class="wheel-svg" viewBox="-120 -50 680 560" xmlns="http://www.w3.org/2000/svg" id="wheelSvg">
-                    <defs>
-                        <!-- Define clip paths for each segment -->
-                        <clipPath id="clip-career">
-                            <path d="M220,220 L220,20 A200,200 0 0,1 361.4,78.6 Z"/>
-                        </clipPath>
-                        <clipPath id="clip-personal">
-                            <path d="M220,220 L361.4,78.6 A200,200 0 0,1 420,220 Z"/>
-                        </clipPath>
-                        <clipPath id="clip-relationships">
-                            <path d="M220,220 L420,220 A200,200 0 0,1 361.4,361.4 Z"/>
-                        </clipPath>
-                        <clipPath id="clip-spirituality">
-                            <path d="M220,220 L361.4,361.4 A200,200 0 0,1 220,420 Z"/>
-                        </clipPath>
-                        <clipPath id="clip-home">
-                            <path d="M220,220 L220,420 A200,200 0 0,1 78.6,361.4 Z"/>
-                        </clipPath>
-                        <clipPath id="clip-recreation">
-                            <path d="M220,220 L78.6,361.4 A200,200 0 0,1 20,220 Z"/>
-                        </clipPath>
-                        <clipPath id="clip-health">
-                            <path d="M220,220 L20,220 A200,200 0 0,1 78.6,78.6 Z"/>
-                        </clipPath>
-                        <clipPath id="clip-finances">
-                            <path d="M220,220 L78.6,78.6 A200,200 0 0,1 220,20 Z"/>
-                        </clipPath>
-                    </defs>
-
-                    <!-- Grid circles (1-10 scale) -->
-                    <circle cx="220" cy="220" r="20" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="40" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="60" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="80" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="100" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="120" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="140" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="160" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="180" class="wheel-grid-circle"/>
-                    <circle cx="220" cy="220" r="200" class="wheel-grid-circle" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
-                    
-                    <!-- Grid lines (8 segments) -->
-                    <line x1="220" y1="220" x2="220" y2="20" class="wheel-grid-line"/>
-                    <line x1="220" y1="220" x2="361.4" y2="78.6" class="wheel-grid-line"/>
-                    <line x1="220" y1="220" x2="420" y2="220" class="wheel-grid-line"/>
-                    <line x1="220" y1="220" x2="361.4" y2="361.4" class="wheel-grid-line"/>
-                    <line x1="220" y1="220" x2="220" y2="420" class="wheel-grid-line"/>
-                    <line x1="220" y1="220" x2="78.6" y2="361.4" class="wheel-grid-line"/>
-                    <line x1="220" y1="220" x2="20" y2="220" class="wheel-grid-line"/>
-                    <line x1="220" y1="220" x2="78.6" y2="78.6" class="wheel-grid-line"/>
-                    
-                    <!-- Background clickable segments -->
-                    <path id="bg-career" class="wheel-bg-segment" d="M220,220 L220,20 A200,200 0 0,1 361.4,78.6 Z" onclick="selectSegment('career')"/>
-                    <path id="bg-personal" class="wheel-bg-segment" d="M220,220 L361.4,78.6 A200,200 0 0,1 420,220 Z" onclick="selectSegment('personal')"/>
-                    <path id="bg-relationships" class="wheel-bg-segment" d="M220,220 L420,220 A200,200 0 0,1 361.4,361.4 Z" onclick="selectSegment('relationships')"/>
-                    <path id="bg-spirituality" class="wheel-bg-segment" d="M220,220 L361.4,361.4 A200,200 0 0,1 220,420 Z" onclick="selectSegment('spirituality')"/>
-                    <path id="bg-home" class="wheel-bg-segment" d="M220,220 L220,420 A200,200 0 0,1 78.6,361.4 Z" onclick="selectSegment('home')"/>
-                    <path id="bg-recreation" class="wheel-bg-segment" d="M220,220 L78.6,361.4 A200,200 0 0,1 20,220 Z" onclick="selectSegment('recreation')"/>
-                    <path id="bg-health" class="wheel-bg-segment" d="M220,220 L20,220 A200,200 0 0,1 78.6,78.6 Z" onclick="selectSegment('health')"/>
-                    <path id="bg-finances" class="wheel-bg-segment" d="M220,220 L78.6,78.6 A200,200 0 0,1 220,20 Z" onclick="selectSegment('finances')"/>
-
-                    <!-- Filled segments (colored based on score) -->
-                    <path id="fill-career" class="wheel-fill-segment" fill="#22C55E" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    <path id="fill-personal" class="wheel-fill-segment" fill="#A16207" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    <path id="fill-relationships" class="wheel-fill-segment" fill="#EAB308" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    <path id="fill-spirituality" class="wheel-fill-segment" fill="#14B8A6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    <path id="fill-home" class="wheel-fill-segment" fill="#3B82F6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    <path id="fill-recreation" class="wheel-fill-segment" fill="#EC4899" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    <path id="fill-health" class="wheel-fill-segment" fill="#8B5CF6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    <path id="fill-finances" class="wheel-fill-segment" fill="#FF8200" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
-                    
-                    <!-- Center circle -->
-                    <circle cx="220" cy="220" r="18" class="wheel-center-circle"/>
-                    
-                    <!-- Score text in each segment -->
-                    <text id="score-career" class="wheel-score-text" x="245" y="115"></text>
-                    <text id="score-personal" class="wheel-score-text" x="320" y="150"></text>
-                    <text id="score-relationships" class="wheel-score-text" x="335" y="245"></text>
-                    <text id="score-spirituality" class="wheel-score-text" x="305" y="320"></text>
-                    <text id="score-home" class="wheel-score-text" x="195" y="335"></text>
-                    <text id="score-recreation" class="wheel-score-text" x="115" y="305"></text>
-                    <text id="score-health" class="wheel-score-text" x="95" y="210"></text>
-                    <text id="score-finances" class="wheel-score-text" x="125" y="135"></text>
-                    
-                    <!-- Labels outside the wheel -->
-                    <text class="wheel-label" x="220" y="-15" text-anchor="middle">
-                        <tspan x="220" dy="0">Career</tspan>
-                        <tspan x="220" dy="26">&amp; Work</tspan>
-                    </text>
-                    <text class="wheel-label" x="435" y="35" text-anchor="start">
-                        <tspan x="435" dy="0">Personal</tspan>
-                        <tspan x="435" dy="26">Dev</tspan>
-                    </text>
-                    <text class="wheel-label" x="435" y="210" text-anchor="start">
-                        <tspan x="435" dy="0">Relation-</tspan>
-                        <tspan x="435" dy="26">ships</tspan>
-                    </text>
-                    <text class="wheel-label" x="435" y="390" text-anchor="start">
-                        <tspan x="435" dy="0">Spiritual-</tspan>
-                        <tspan x="435" dy="26">ity</tspan>
-                    </text>
-                    <text class="wheel-label" x="220" y="455" text-anchor="middle">
-                        <tspan x="220" dy="0">Home &amp;</tspan>
-                        <tspan x="220" dy="26">Environment</tspan>
-                    </text>
-                    <text class="wheel-label" x="5" y="390" text-anchor="end">
-                        <tspan x="5" dy="0">Recreation</tspan>
-                        <tspan x="5" dy="26">&amp; Fun</tspan>
-                    </text>
-                    <text class="wheel-label" x="5" y="210" text-anchor="end">
-                        <tspan x="5" dy="0">Health &amp;</tspan>
-                        <tspan x="5" dy="26">Wellness</tspan>
-                    </text>
-                    <text class="wheel-label" x="5" y="45" text-anchor="end">
-                        <tspan x="5" dy="0">Finances</tspan>
-                    </text>
-                </svg>
+    <div class="content-wrapper">
+        <h2 onclick="toggleSection(this)">Wheel of Life</h2>
+        <div class="collapsible-content">
+            <div class="info-card">
+                <p>Click on each segment of the wheel to rate yourself from 1-10 in each life area. Watch as your personal wheel takes shape—revealing where you're thriving and where you might focus next.</p>
             </div>
+            
+            <div class="wheel-container">
+                <div class="wheel-wrapper">
+                    <svg class="wheel-svg" viewBox="-120 -50 680 560" xmlns="http://www.w3.org/2000/svg" id="wheelSvg">
+                        <circle cx="220" cy="220" r="20" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="40" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="60" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="80" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="100" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="120" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="140" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="160" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="180" class="wheel-grid-circle"/>
+                        <circle cx="220" cy="220" r="200" class="wheel-grid-circle" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+                        
+                        <line x1="220" y1="220" x2="220" y2="20" class="wheel-grid-line"/>
+                        <line x1="220" y1="220" x2="361.4" y2="78.6" class="wheel-grid-line"/>
+                        <line x1="220" y1="220" x2="420" y2="220" class="wheel-grid-line"/>
+                        <line x1="220" y1="220" x2="361.4" y2="361.4" class="wheel-grid-line"/>
+                        <line x1="220" y1="220" x2="220" y2="420" class="wheel-grid-line"/>
+                        <line x1="220" y1="220" x2="78.6" y2="361.4" class="wheel-grid-line"/>
+                        <line x1="220" y1="220" x2="20" y2="220" class="wheel-grid-line"/>
+                        <line x1="220" y1="220" x2="78.6" y2="78.6" class="wheel-grid-line"/>
+                        
+                        <path id="bg-career" class="wheel-bg-segment" d="M220,220 L220,20 A200,200 0 0,1 361.4,78.6 Z" onclick="selectSegment('career')"/>
+                        <path id="bg-personal" class="wheel-bg-segment" d="M220,220 L361.4,78.6 A200,200 0 0,1 420,220 Z" onclick="selectSegment('personal')"/>
+                        <path id="bg-relationships" class="wheel-bg-segment" d="M220,220 L420,220 A200,200 0 0,1 361.4,361.4 Z" onclick="selectSegment('relationships')"/>
+                        <path id="bg-spirituality" class="wheel-bg-segment" d="M220,220 L361.4,361.4 A200,200 0 0,1 220,420 Z" onclick="selectSegment('spirituality')"/>
+                        <path id="bg-home" class="wheel-bg-segment" d="M220,220 L220,420 A200,200 0 0,1 78.6,361.4 Z" onclick="selectSegment('home')"/>
+                        <path id="bg-recreation" class="wheel-bg-segment" d="M220,220 L78.6,361.4 A200,200 0 0,1 20,220 Z" onclick="selectSegment('recreation')"/>
+                        <path id="bg-health" class="wheel-bg-segment" d="M220,220 L20,220 A200,200 0 0,1 78.6,78.6 Z" onclick="selectSegment('health')"/>
+                        <path id="bg-finances" class="wheel-bg-segment" d="M220,220 L78.6,78.6 A200,200 0 0,1 220,20 Z" onclick="selectSegment('finances')"/>
 
-            <div class="wheel-controls">
-                <!-- Rating Panel -->
-                <div class="rating-panel" id="ratingPanel">
-                    <div class="rating-panel-header">
-                        <span class="rating-panel-title" id="ratingTitle">Select a category</span>
-                        <button class="rating-panel-close" onclick="closeRatingPanel()">×</button>
-                    </div>
-                    <div class="rating-scale" id="ratingScale">
-                        <!-- Buttons generated by JS -->
-                    </div>
-                    <div class="rating-labels">
-                        <span>Struggling</span>
-                        <span>Thriving</span>
-                    </div>
+                        <path id="fill-career" class="wheel-fill-segment" fill="#22C55E" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        <path id="fill-personal" class="wheel-fill-segment" fill="#A16207" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        <path id="fill-relationships" class="wheel-fill-segment" fill="#EAB308" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        <path id="fill-spirituality" class="wheel-fill-segment" fill="#14B8A6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        <path id="fill-home" class="wheel-fill-segment" fill="#3B82F6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        <path id="fill-recreation" class="wheel-fill-segment" fill="#EC4899" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        <path id="fill-health" class="wheel-fill-segment" fill="#8B5CF6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        <path id="fill-finances" class="wheel-fill-segment" fill="#FF8200" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                        
+                        <circle cx="220" cy="220" r="18" class="wheel-center-circle"/>
+                        
+                        <text id="score-career" class="wheel-score-text" x="245" y="115"></text>
+                        <text id="score-personal" class="wheel-score-text" x="320" y="150"></text>
+                        <text id="score-relationships" class="wheel-score-text" x="335" y="245"></text>
+                        <text id="score-spirituality" class="wheel-score-text" x="305" y="320"></text>
+                        <text id="score-home" class="wheel-score-text" x="195" y="335"></text>
+                        <text id="score-recreation" class="wheel-score-text" x="115" y="305"></text>
+                        <text id="score-health" class="wheel-score-text" x="95" y="210"></text>
+                        <text id="score-finances" class="wheel-score-text" x="125" y="135"></text>
+                        
+                        <text class="wheel-label" x="220" y="-15" text-anchor="middle">
+                            <tspan x="220" dy="0">Career</tspan>
+                            <tspan x="220" dy="28">&amp; Work</tspan>
+                        </text>
+                        <text class="wheel-label" x="435" y="35" text-anchor="start">
+                            <tspan x="435" dy="0">Personal</tspan>
+                            <tspan x="435" dy="28">Dev</tspan>
+                        </text>
+                        <text class="wheel-label" x="435" y="210" text-anchor="start">
+                            <tspan x="435" dy="0">Relation-</tspan>
+                            <tspan x="435" dy="28">ships</tspan>
+                        </text>
+                        <text class="wheel-label" x="435" y="390" text-anchor="start">
+                            <tspan x="435" dy="0">Spiritual-</tspan>
+                            <tspan x="435" dy="28">ity</tspan>
+                        </text>
+                        <text class="wheel-label" x="220" y="455" text-anchor="middle">
+                            <tspan x="220" dy="0">Home &amp;</tspan>
+                            <tspan x="220" dy="28">Environment</tspan>
+                        </text>
+                        <text class="wheel-label" x="5" y="390" text-anchor="end">
+                            <tspan x="5" dy="0">Recreation</tspan>
+                            <tspan x="5" dy="28">&amp; Fun</tspan>
+                        </text>
+                        <text class="wheel-label" x="5" y="210" text-anchor="end">
+                            <tspan x="5" dy="0">Health &amp;</tspan>
+                            <tspan x="5" dy="28">Wellness</tspan>
+                        </text>
+                        <text class="wheel-label" x="5" y="45" text-anchor="end">
+                            <tspan x="5" dy="0">Finances</tspan>
+                        </text>
+                    </svg>
                 </div>
 
-                <!-- Score Summary -->
-                <div class="score-summary">
-                    <div class="score-item" id="item-career" onclick="selectSegment('career')">
-                        <div class="score-color" style="background: #22C55E;"></div>
-                        <span class="score-label">Career & Work</span>
-                        <span class="score-value empty" id="summary-career">—</span>
+                <div class="wheel-controls">
+                    <div class="rating-panel" id="ratingPanel">
+                        <div class="rating-panel-header">
+                            <span class="rating-panel-title" id="ratingTitle">Select a category</span>
+                            <button class="rating-panel-close" onclick="closeRatingPanel()">×</button>
+                        </div>
+                        <div class="rating-scale" id="ratingScale"></div>
+                        <div class="rating-labels">
+                            <span>Struggling</span>
+                            <span>Thriving</span>
+                        </div>
                     </div>
-                    <div class="score-item" id="item-personal" onclick="selectSegment('personal')">
-                        <div class="score-color" style="background: #A16207;"></div>
-                        <span class="score-label">Personal Development</span>
-                        <span class="score-value empty" id="summary-personal">—</span>
-                    </div>
-                    <div class="score-item" id="item-relationships" onclick="selectSegment('relationships')">
-                        <div class="score-color" style="background: #EAB308;"></div>
-                        <span class="score-label">Relationships</span>
-                        <span class="score-value empty" id="summary-relationships">—</span>
-                    </div>
-                    <div class="score-item" id="item-spirituality" onclick="selectSegment('spirituality')">
-                        <div class="score-color" style="background: #14B8A6;"></div>
-                        <span class="score-label">Spirituality</span>
-                        <span class="score-value empty" id="summary-spirituality">—</span>
-                    </div>
-                    <div class="score-item" id="item-home" onclick="selectSegment('home')">
-                        <div class="score-color" style="background: #3B82F6;"></div>
-                        <span class="score-label">Home & Environment</span>
-                        <span class="score-value empty" id="summary-home">—</span>
-                    </div>
-                    <div class="score-item" id="item-recreation" onclick="selectSegment('recreation')">
-                        <div class="score-color" style="background: #EC4899;"></div>
-                        <span class="score-label">Recreation & Fun</span>
-                        <span class="score-value empty" id="summary-recreation">—</span>
-                    </div>
-                    <div class="score-item" id="item-health" onclick="selectSegment('health')">
-                        <div class="score-color" style="background: #8B5CF6;"></div>
-                        <span class="score-label">Health & Wellness</span>
-                        <span class="score-value empty" id="summary-health">—</span>
-                    </div>
-                    <div class="score-item" id="item-finances" onclick="selectSegment('finances')">
-                        <div class="score-color" style="background: #FF8200;"></div>
-                        <span class="score-label">Finances</span>
-                        <span class="score-value empty" id="summary-finances">—</span>
-                    </div>
-                </div>
 
-                <!-- Total Score -->
-                <div class="total-score">
-                    <span class="total-label">Life Balance Score</span>
-                    <span class="total-value" id="totalScore">0</span>
-                    <span class="total-max">/ 80</span>
-                </div>
+                    <div class="score-summary">
+                        <div class="score-item" id="item-career" onclick="selectSegment('career')">
+                            <div class="score-color" style="background: #22C55E;"></div>
+                            <span class="score-label">Career & Work</span>
+                            <span class="score-value empty" id="summary-career">—</span>
+                        </div>
+                        <div class="score-item" id="item-personal" onclick="selectSegment('personal')">
+                            <div class="score-color" style="background: #A16207;"></div>
+                            <span class="score-label">Personal Development</span>
+                            <span class="score-value empty" id="summary-personal">—</span>
+                        </div>
+                        <div class="score-item" id="item-relationships" onclick="selectSegment('relationships')">
+                            <div class="score-color" style="background: #EAB308;"></div>
+                            <span class="score-label">Relationships</span>
+                            <span class="score-value empty" id="summary-relationships">—</span>
+                        </div>
+                        <div class="score-item" id="item-spirituality" onclick="selectSegment('spirituality')">
+                            <div class="score-color" style="background: #14B8A6;"></div>
+                            <span class="score-label">Spirituality</span>
+                            <span class="score-value empty" id="summary-spirituality">—</span>
+                        </div>
+                        <div class="score-item" id="item-home" onclick="selectSegment('home')">
+                            <div class="score-color" style="background: #3B82F6;"></div>
+                            <span class="score-label">Home & Environment</span>
+                            <span class="score-value empty" id="summary-home">—</span>
+                        </div>
+                        <div class="score-item" id="item-recreation" onclick="selectSegment('recreation')">
+                            <div class="score-color" style="background: #EC4899;"></div>
+                            <span class="score-label">Recreation & Fun</span>
+                            <span class="score-value empty" id="summary-recreation">—</span>
+                        </div>
+                        <div class="score-item" id="item-health" onclick="selectSegment('health')">
+                            <div class="score-color" style="background: #8B5CF6;"></div>
+                            <span class="score-label">Health & Wellness</span>
+                            <span class="score-value empty" id="summary-health">—</span>
+                        </div>
+                        <div class="score-item" id="item-finances" onclick="selectSegment('finances')">
+                            <div class="score-color" style="background: #FF8200;"></div>
+                            <span class="score-label">Finances</span>
+                            <span class="score-value empty" id="summary-finances">—</span>
+                        </div>
+                    </div>
 
-                <button class="reset-btn" onclick="resetWheel()">Reset Assessment</button>
+                    <div class="total-score">
+                        <span class="total-label">Life Balance Score</span>
+                        <span class="total-value" id="totalScore">0</span>
+                        <span class="total-max">/ 80</span>
+                    </div>
+
+                    <button class="reset-btn" onclick="resetWheel()">Reset Assessment</button>
+                </div>
             </div>
         </div>
+
+        <div class="section-divider"></div>
+
+        <h2 onclick="toggleSection(this)">The Framework</h2>
+        <div class="collapsible-content">
+            <div class="info-card">
+                <p>Flow builds on Maslow's hierarchy but expands it for modern life. Where Maslow stops at self-actualization, we add <strong>Legacy</strong> (what you leave behind) and <strong>Flow</strong> (the ultimate state of being). Each level supports the ones above it—you can't sustain Flow without Legacy, and none of it matters without Faith & Family to anchor you.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 onclick="toggleSection(this)">Level Definitions</h2>
+        <div class="collapsible-content">
+            
+            <h4 data-level="1" onclick="toggleLevel(this)">Faith & Family</h4>
+            <div class="level-content-detail">
+                <p>Your bedrock. Faith—whether spiritual, philosophical, or a deep belief in something greater—provides the "why" behind everything else. Family creates the support system that makes risk-taking possible. Without roots, there's no growth.</p>
+            </div>
+
+            <h4 data-level="2" onclick="toggleLevel(this)">Fitness & Finances</h4>
+            <div class="level-content-detail">
+                <p>Your twin engines. Physical health and financial health power everything above. You can't chase dreams while running on empty—literally or figuratively. These aren't goals in themselves; they're the fuel that makes higher pursuits possible.</p>
+            </div>
+
+            <h4 data-level="3" onclick="toggleLevel(this)">Focus & Fulfillment</h4>
+            <div class="level-content-detail">
+                <p>With your foundation secure and fuel tanks full, you can direct energy intentionally. Focus means choosing what matters and saying no to what doesn't. Fulfillment emerges when daily work aligns with deeper values.</p>
+            </div>
+
+            <h4 data-level="4" onclick="toggleLevel(this)">Friends & Fun</h4>
+            <div class="level-content-detail">
+                <p>Success without celebration is just survival. Meaningful relationships and genuine joy aren't luxuries—they're essential to sustained performance. The journey should be worth taking, not just the destination.</p>
+            </div>
+
+            <h4 data-level="5" onclick="toggleLevel(this)">Future</h4>
+            <div class="level-content-detail">
+                <p>Here you shift from living day-to-day to building something that outlasts today's problems. Future-thinking means investing time, money, and energy in outcomes you may not see for years. It's planting trees whose shade you may never sit under.</p>
+            </div>
+
+            <h4 data-level="6" onclick="toggleLevel(this)">Legacy</h4>
+            <div class="level-content-detail">
+                <p>Legacy isn't about monuments or money—it's about meaning that outlives you. What did you build? Who did you help? What did you teach? Here, your focus shifts from "what can I get?" to "what can I give?"</p>
+            </div>
+
+            <h4 data-level="7" onclick="toggleLevel(this)">Flow</h4>
+            <div class="level-content-detail">
+                <p>The pinnacle. That rare state where challenge meets capability and time disappears. Operating in your zone of genius—work feels like play, and your contribution seems effortless to others. This is where craft becomes calling, and purpose becomes presence.</p>
+            </div>
+
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 onclick="toggleSection(this)">How the Levels Connect</h2>
+        <div class="collapsible-content">
+            <div class="info-card">
+                <p>The hierarchy isn't just a list—it's a support structure. Your <strong>Faith & Family</strong> foundation gives you courage to build <strong>Fitness & Finances</strong>. Those resources enable <strong>Focus & Fulfillment</strong>, which creates space for <strong>Friends & Fun</strong>. With joy in your life, you can think about the <strong>Future</strong>. Future-orientation lets you build a <strong>Legacy</strong>. And when your legacy is secure, you can finally achieve <strong>Flow</strong>—the ultimate state of being.</p>
+            </div>
+            <div class="info-card">
+                <p>Skip a level, and the whole structure becomes unstable. A person chasing Flow while ignoring Fitness will burn out. Someone focused only on Finances without Faith may achieve wealth but find it hollow.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 onclick="toggleSection(this)">Your One-Year Assessment</h2>
+        <div class="collapsible-content">
+            <div class="cta-section">
+                <h4>Take Action</h4>
+                <p>Rate yourself honestly on each level from 1-10. Where are your gaps? Where are you over-indexed? Often, we pour energy into higher levels while neglecting our foundation—like building a penthouse on a cracked foundation.</p>
+                <br>
+                <p>Over the next twelve months, identify your weakest foundational level and shore it up first. The higher levels will become more accessible once the lower ones are solid. Progress isn't about reaching the top fastest—it's about building a structure that can stand for decades.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-brand">CHIP | Wealth Management for Main Street</div>
+            <div class="footer-tagline">1st Discount Brokerage</div>
+            <p class="disclaimer">This framework is for educational and personal development purposes only. It is not investment advice or a recommendation to buy or sell any securities.</p>
+        </footer>
     </div>
-
-    <div class="section-divider"></div>
-
-    <!-- The Framework Section -->
-    <h2 onclick="toggleSection(this)">The Framework</h2>
-    <div class="collapsible-content">
-        <div class="info-card">
-            <p>Flow builds on Maslow's hierarchy but expands it for modern life. Where Maslow stops at self-actualization, we add <strong>Legacy</strong> (what you leave behind) and <strong>Flow</strong> (the ultimate state of being). Each level supports the ones above it—you can't sustain Flow without Legacy, and none of it matters without Faith & Family to anchor you.</p>
-        </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <!-- Level Definitions Section -->
-    <h2 onclick="toggleSection(this)">Level Definitions</h2>
-    <div class="collapsible-content">
-        
-        <h4 data-level="1" onclick="toggleLevel(this)">Faith & Family</h4>
-        <div class="level-content-detail">
-            <p>Your bedrock. Faith—whether spiritual, philosophical, or a deep belief in something greater—provides the "why" behind everything else. Family creates the support system that makes risk-taking possible. Without roots, there's no growth.</p>
-        </div>
-
-        <h4 data-level="2" onclick="toggleLevel(this)">Fitness & Finances</h4>
-        <div class="level-content-detail">
-            <p>Your twin engines. Physical health and financial health power everything above. You can't chase dreams while running on empty—literally or figuratively. These aren't goals in themselves; they're the fuel that makes higher pursuits possible.</p>
-        </div>
-
-        <h4 data-level="3" onclick="toggleLevel(this)">Focus & Fulfillment</h4>
-        <div class="level-content-detail">
-            <p>With your foundation secure and fuel tanks full, you can direct energy intentionally. Focus means choosing what matters and saying no to what doesn't. Fulfillment emerges when daily work aligns with deeper values.</p>
-        </div>
-
-        <h4 data-level="4" onclick="toggleLevel(this)">Friends & Fun</h4>
-        <div class="level-content-detail">
-            <p>Success without celebration is just survival. Meaningful relationships and genuine joy aren't luxuries—they're essential to sustained performance. The journey should be worth taking, not just the destination.</p>
-        </div>
-
-        <h4 data-level="5" onclick="toggleLevel(this)">Future</h4>
-        <div class="level-content-detail">
-            <p>Here you shift from living day-to-day to building something that outlasts today's problems. Future-thinking means investing time, money, and energy in outcomes you may not see for years. It's planting trees whose shade you may never sit under.</p>
-        </div>
-
-        <h4 data-level="6" onclick="toggleLevel(this)">Legacy</h4>
-        <div class="level-content-detail">
-            <p>Legacy isn't about monuments or money—it's about meaning that outlives you. What did you build? Who did you help? What did you teach? Here, your focus shifts from "what can I get?" to "what can I give?"</p>
-        </div>
-
-        <h4 data-level="7" onclick="toggleLevel(this)">Flow</h4>
-        <div class="level-content-detail">
-            <p>The pinnacle. That rare state where challenge meets capability and time disappears. Operating in your zone of genius—work feels like play, and your contribution seems effortless to others. This is where craft becomes calling, and purpose becomes presence.</p>
-        </div>
-
-    </div>
-
-    <div class="section-divider"></div>
-
-    <!-- How It Works Section -->
-    <h2 onclick="toggleSection(this)">How the Levels Connect</h2>
-    <div class="collapsible-content">
-        <div class="info-card">
-            <p>The hierarchy isn't just a list—it's a support structure. Your <strong>Faith & Family</strong> foundation gives you courage to build <strong>Fitness & Finances</strong>. Those resources enable <strong>Focus & Fulfillment</strong>, which creates space for <strong>Friends & Fun</strong>. With joy in your life, you can think about the <strong>Future</strong>. Future-orientation lets you build a <strong>Legacy</strong>. And when your legacy is secure, you can finally achieve <strong>Flow</strong>—the ultimate state of being.</p>
-        </div>
-        <div class="info-card">
-            <p>Skip a level, and the whole structure becomes unstable. A person chasing Flow while ignoring Fitness will burn out. Someone focused only on Finances without Faith may achieve wealth but find it hollow.</p>
-        </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <!-- Action Section -->
-    <h2 onclick="toggleSection(this)">Your One-Year Assessment</h2>
-    <div class="collapsible-content">
-        <div class="cta-section">
-            <h4>Take Action</h4>
-            <p>Rate yourself honestly on each level from 1-10. Where are your gaps? Where are you over-indexed? Often, we pour energy into higher levels while neglecting our foundation—like building a penthouse on a cracked foundation.</p>
-            <br>
-            <p>Over the next twelve months, identify your weakest foundational level and shore it up first. The higher levels will become more accessible once the lower ones are solid. Progress isn't about reaching the top fastest—it's about building a structure that can stand for decades.</p>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-brand">CHIP | Wealth Management for Main Street</div>
-        <div class="footer-tagline">1st Discount Brokerage</div>
-        <p class="disclaimer">This framework is for educational and personal development purposes only. It is not investment advice or a recommendation to buy or sell any securities.</p>
-    </footer>
 </div>
 
 <script>
-    // Section toggle
     function toggleSection(header) {
         header.classList.toggle('expanded');
         const content = header.nextElementSibling;
         content.classList.toggle('expanded');
     }
 
-    // Level toggle
     function toggleLevel(header) {
         header.classList.toggle('expanded');
         const content = header.nextElementSibling;
         content.classList.toggle('expanded');
     }
 
-    // Wheel of Life functionality
     const cx = 220, cy = 220;
     const maxRadius = 200;
     
@@ -1299,11 +1186,9 @@
         closeRatingPanel();
     }
 
-    // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         initRatingScale();
         
-        // Expand first section (Wheel of Life)
         const firstSection = document.querySelector('h2');
         if (firstSection) {
             firstSection.classList.add('expanded');
