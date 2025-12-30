@@ -153,7 +153,7 @@
     }
 
     .collapsible-content.expanded {
-        max-height: 2000px;
+        max-height: 3000px;
         transition: max-height 0.6s ease-in;
     }
 
@@ -293,6 +293,290 @@
         margin: 10px 0;
     }
 
+    /* ========================================
+       WHEEL OF LIFE STYLES
+       ======================================== */
+    
+    .wheel-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .wheel-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .wheel-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Clickable background segments */
+    .wheel-bg-segment {
+        cursor: pointer;
+        fill: rgba(255,255,255,0.08);
+        transition: fill 0.2s ease;
+    }
+
+    .wheel-bg-segment:hover {
+        fill: rgba(255,255,255,0.15);
+    }
+
+    .wheel-bg-segment.selected {
+        fill: rgba(255,255,255,0.2);
+    }
+
+    /* Filled segments (show score) */
+    .wheel-fill-segment {
+        pointer-events: none;
+        transition: d 0.4s ease-out;
+    }
+
+    .wheel-label {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        fill: var(--soft-white);
+        pointer-events: none;
+    }
+
+    .wheel-score-text {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        fill: white;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .wheel-score-text.visible {
+        opacity: 1;
+    }
+
+    .wheel-grid-circle {
+        fill: none;
+        stroke: rgba(255,255,255,0.12);
+        stroke-width: 1;
+    }
+
+    .wheel-grid-line {
+        stroke: rgba(255,255,255,0.15);
+        stroke-width: 1;
+    }
+
+    .wheel-center-circle {
+        fill: #1a1a2e;
+        stroke: rgba(255,255,255,0.3);
+        stroke-width: 2;
+    }
+
+    /* Rating Panel */
+    .rating-panel {
+        background: rgba(30, 35, 50, 0.95);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 500px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+    }
+
+    .rating-panel.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+    }
+
+    .rating-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+
+    .rating-panel-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        color: var(--warm-sand);
+    }
+
+    .rating-panel-close {
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.5);
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        transition: color 0.2s ease;
+    }
+
+    .rating-panel-close:hover {
+        color: var(--tiffany-blue);
+    }
+
+    .rating-scale {
+        display: flex;
+        gap: 8px;
+        justify-content: space-between;
+    }
+
+    .rating-btn {
+        flex: 1;
+        aspect-ratio: 1;
+        max-width: 42px;
+        border: 2px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.05);
+        border-radius: 50%;
+        color: rgba(255,255,255,0.6);
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .rating-btn:hover {
+        border-color: var(--tiffany-blue);
+        color: var(--tiffany-blue);
+        background: rgba(10,186,181,0.15);
+        transform: scale(1.1);
+    }
+
+    .rating-btn.selected {
+        color: white;
+        transform: scale(1.15);
+    }
+
+    .rating-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.4);
+    }
+
+    /* Score Summary */
+    .score-summary {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .score-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.03);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+    }
+
+    .score-item:hover {
+        background: rgba(255,255,255,0.08);
+    }
+
+    .score-item.selected {
+        border-color: rgba(255,255,255,0.3);
+        background: rgba(255,255,255,0.1);
+    }
+
+    .score-color {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        flex-shrink: 0;
+    }
+
+    .score-label {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.7);
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .score-value {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--tiffany-blue);
+        min-width: 24px;
+        text-align: right;
+    }
+
+    .score-value.empty {
+        color: rgba(255,255,255,0.25);
+    }
+
+    /* Total Score */
+    .total-score {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+        padding: 18px;
+        background: linear-gradient(135deg, rgba(74,124,89,0.15) 0%, rgba(10,186,181,0.15) 100%);
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .total-label {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: var(--warm-sand);
+    }
+
+    .total-value {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--tiffany-blue);
+    }
+
+    .total-max {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.4);
+    }
+
+    /* Reset Button */
+    .reset-btn {
+        display: block;
+        margin: 20px auto 0;
+        padding: 12px 28px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        color: rgba(255,255,255,0.5);
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .reset-btn:hover {
+        border-color: var(--clay);
+        color: var(--clay);
+    }
+
     /* Mobile: stack vertically */
     @media (max-width: 700px) {
         .pyramids-wrapper {
@@ -301,6 +585,16 @@
         }
         .pyramid-section {
             max-width: 340px;
+        }
+        .score-summary {
+            grid-template-columns: 1fr;
+        }
+        .wheel-label {
+            font-size: 20px;
+        }
+        .rating-btn {
+            max-width: 36px;
+            font-size: 0.85rem;
         }
     }
 </style>
@@ -320,8 +614,6 @@
     <div class="pyramid-section">
         <div class="pyramid-container">
             <svg class="pyramid-svg" viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg">
-                <!-- Pyramid centered at x=180, wider base at 360px, labels to the right -->
-                
                 <!-- Level 7 - Flow (Top) - Purple -->
                 <polygon points="180,10 206,58 154,58" fill="#8B5CF6"/>
                 <text x="180" y="40" class="level-title-text" font-size="8">Flow</text>
@@ -384,8 +676,6 @@
     <div class="pyramid-section">
         <div class="pyramid-container">
             <svg class="pyramid-svg" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
-                <!-- Pyramid centered at x=180, wider base, labels to the right -->
-                
                 <!-- Level 5 - Self-actualization (Top) - Purple -->
                 <polygon points="180,10 216,66 144,66" fill="#8B5CF6"/>
                 <text x="180" y="34" class="level-title-text" font-size="8">Self</text>
@@ -431,6 +721,208 @@
         </div>
     </div>
 </div>
+
+<!-- ========================================
+     WHEEL OF LIFE SECTION
+     ======================================== -->
+<h2 onclick="toggleSection(this)">Wheel of Life</h2>
+<div class="collapsible-content">
+    <div class="info-card">
+        <p>Click on each segment of the wheel to rate yourself from 1-10 in each life area. Watch as your personal wheel takes shape—revealing where you're thriving and where you might focus next.</p>
+    </div>
+    
+    <div class="wheel-container">
+        <div class="wheel-wrapper">
+            <svg class="wheel-svg" viewBox="-120 -50 680 560" xmlns="http://www.w3.org/2000/svg" id="wheelSvg">
+                <defs>
+                    <!-- Define clip paths for each segment -->
+                    <clipPath id="clip-career">
+                        <path d="M220,220 L220,20 A200,200 0 0,1 361.4,78.6 Z"/>
+                    </clipPath>
+                    <clipPath id="clip-personal">
+                        <path d="M220,220 L361.4,78.6 A200,200 0 0,1 420,220 Z"/>
+                    </clipPath>
+                    <clipPath id="clip-relationships">
+                        <path d="M220,220 L420,220 A200,200 0 0,1 361.4,361.4 Z"/>
+                    </clipPath>
+                    <clipPath id="clip-spirituality">
+                        <path d="M220,220 L361.4,361.4 A200,200 0 0,1 220,420 Z"/>
+                    </clipPath>
+                    <clipPath id="clip-home">
+                        <path d="M220,220 L220,420 A200,200 0 0,1 78.6,361.4 Z"/>
+                    </clipPath>
+                    <clipPath id="clip-recreation">
+                        <path d="M220,220 L78.6,361.4 A200,200 0 0,1 20,220 Z"/>
+                    </clipPath>
+                    <clipPath id="clip-health">
+                        <path d="M220,220 L20,220 A200,200 0 0,1 78.6,78.6 Z"/>
+                    </clipPath>
+                    <clipPath id="clip-finances">
+                        <path d="M220,220 L78.6,78.6 A200,200 0 0,1 220,20 Z"/>
+                    </clipPath>
+                </defs>
+
+                <!-- Grid circles (1-10 scale) -->
+                <circle cx="220" cy="220" r="20" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="40" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="60" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="80" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="100" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="120" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="140" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="160" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="180" class="wheel-grid-circle"/>
+                <circle cx="220" cy="220" r="200" class="wheel-grid-circle" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+                
+                <!-- Grid lines (8 segments) -->
+                <line x1="220" y1="220" x2="220" y2="20" class="wheel-grid-line"/>
+                <line x1="220" y1="220" x2="361.4" y2="78.6" class="wheel-grid-line"/>
+                <line x1="220" y1="220" x2="420" y2="220" class="wheel-grid-line"/>
+                <line x1="220" y1="220" x2="361.4" y2="361.4" class="wheel-grid-line"/>
+                <line x1="220" y1="220" x2="220" y2="420" class="wheel-grid-line"/>
+                <line x1="220" y1="220" x2="78.6" y2="361.4" class="wheel-grid-line"/>
+                <line x1="220" y1="220" x2="20" y2="220" class="wheel-grid-line"/>
+                <line x1="220" y1="220" x2="78.6" y2="78.6" class="wheel-grid-line"/>
+                
+                <!-- Background clickable segments -->
+                <path id="bg-career" class="wheel-bg-segment" d="M220,220 L220,20 A200,200 0 0,1 361.4,78.6 Z" onclick="selectSegment('career')"/>
+                <path id="bg-personal" class="wheel-bg-segment" d="M220,220 L361.4,78.6 A200,200 0 0,1 420,220 Z" onclick="selectSegment('personal')"/>
+                <path id="bg-relationships" class="wheel-bg-segment" d="M220,220 L420,220 A200,200 0 0,1 361.4,361.4 Z" onclick="selectSegment('relationships')"/>
+                <path id="bg-spirituality" class="wheel-bg-segment" d="M220,220 L361.4,361.4 A200,200 0 0,1 220,420 Z" onclick="selectSegment('spirituality')"/>
+                <path id="bg-home" class="wheel-bg-segment" d="M220,220 L220,420 A200,200 0 0,1 78.6,361.4 Z" onclick="selectSegment('home')"/>
+                <path id="bg-recreation" class="wheel-bg-segment" d="M220,220 L78.6,361.4 A200,200 0 0,1 20,220 Z" onclick="selectSegment('recreation')"/>
+                <path id="bg-health" class="wheel-bg-segment" d="M220,220 L20,220 A200,200 0 0,1 78.6,78.6 Z" onclick="selectSegment('health')"/>
+                <path id="bg-finances" class="wheel-bg-segment" d="M220,220 L78.6,78.6 A200,200 0 0,1 220,20 Z" onclick="selectSegment('finances')"/>
+
+                <!-- Filled segments (colored based on score) - these grow from center -->
+                <path id="fill-career" class="wheel-fill-segment" fill="#22C55E" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                <path id="fill-personal" class="wheel-fill-segment" fill="#A16207" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                <path id="fill-relationships" class="wheel-fill-segment" fill="#EAB308" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                <path id="fill-spirituality" class="wheel-fill-segment" fill="#14B8A6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                <path id="fill-home" class="wheel-fill-segment" fill="#3B82F6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                <path id="fill-recreation" class="wheel-fill-segment" fill="#EC4899" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                <path id="fill-health" class="wheel-fill-segment" fill="#8B5CF6" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                <path id="fill-finances" class="wheel-fill-segment" fill="#FF8200" d="M220,220 L220,220 A0,0 0 0,1 220,220 Z"/>
+                
+                <!-- Center circle -->
+                <circle cx="220" cy="220" r="18" class="wheel-center-circle"/>
+                
+                <!-- Score text in each segment -->
+                <text id="score-career" class="wheel-score-text" x="245" y="115"></text>
+                <text id="score-personal" class="wheel-score-text" x="320" y="150"></text>
+                <text id="score-relationships" class="wheel-score-text" x="335" y="245"></text>
+                <text id="score-spirituality" class="wheel-score-text" x="305" y="320"></text>
+                <text id="score-home" class="wheel-score-text" x="195" y="335"></text>
+                <text id="score-recreation" class="wheel-score-text" x="115" y="305"></text>
+                <text id="score-health" class="wheel-score-text" x="95" y="210"></text>
+                <text id="score-finances" class="wheel-score-text" x="125" y="135"></text>
+                
+                <!-- Labels outside the wheel - stacked vertically -->
+                <text class="wheel-label" x="220" y="-15" text-anchor="middle">
+                    <tspan x="220" dy="0">Career</tspan>
+                    <tspan x="220" dy="28">&amp; Work</tspan>
+                </text>
+                <text class="wheel-label" x="435" y="35" text-anchor="start">
+                    <tspan x="435" dy="0">Personal</tspan>
+                    <tspan x="435" dy="28">Dev</tspan>
+                </text>
+                <text class="wheel-label" x="435" y="210" text-anchor="start">
+                    <tspan x="435" dy="0">Relation-</tspan>
+                    <tspan x="435" dy="28">ships</tspan>
+                </text>
+                <text class="wheel-label" x="435" y="390" text-anchor="start">
+                    <tspan x="435" dy="0">Spiritual-</tspan>
+                    <tspan x="435" dy="28">ity</tspan>
+                </text>
+                <text class="wheel-label" x="220" y="455" text-anchor="middle">
+                    <tspan x="220" dy="0">Home &amp;</tspan>
+                    <tspan x="220" dy="28">Environment</tspan>
+                </text>
+                <text class="wheel-label" x="5" y="390" text-anchor="end">
+                    <tspan x="5" dy="0">Recreation</tspan>
+                    <tspan x="5" dy="28">&amp; Fun</tspan>
+                </text>
+                <text class="wheel-label" x="5" y="210" text-anchor="end">
+                    <tspan x="5" dy="0">Health &amp;</tspan>
+                    <tspan x="5" dy="28">Wellness</tspan>
+                </text>
+                <text class="wheel-label" x="5" y="45" text-anchor="end">
+                    <tspan x="5" dy="0">Finances</tspan>
+                </text>
+            </svg>
+        </div>
+
+        <!-- Rating Panel -->
+        <div class="rating-panel" id="ratingPanel">
+            <div class="rating-panel-header">
+                <span class="rating-panel-title" id="ratingTitle">Select a category</span>
+                <button class="rating-panel-close" onclick="closeRatingPanel()">×</button>
+            </div>
+            <div class="rating-scale" id="ratingScale">
+                <!-- Buttons generated by JS -->
+            </div>
+            <div class="rating-labels">
+                <span>Struggling</span>
+                <span>Thriving</span>
+            </div>
+        </div>
+
+        <!-- Score Summary -->
+        <div class="score-summary">
+            <div class="score-item" id="item-career" onclick="selectSegment('career')">
+                <div class="score-color" style="background: #22C55E;"></div>
+                <span class="score-label">Career & Work</span>
+                <span class="score-value empty" id="summary-career">—</span>
+            </div>
+            <div class="score-item" id="item-personal" onclick="selectSegment('personal')">
+                <div class="score-color" style="background: #A16207;"></div>
+                <span class="score-label">Personal Development</span>
+                <span class="score-value empty" id="summary-personal">—</span>
+            </div>
+            <div class="score-item" id="item-relationships" onclick="selectSegment('relationships')">
+                <div class="score-color" style="background: #EAB308;"></div>
+                <span class="score-label">Relationships</span>
+                <span class="score-value empty" id="summary-relationships">—</span>
+            </div>
+            <div class="score-item" id="item-spirituality" onclick="selectSegment('spirituality')">
+                <div class="score-color" style="background: #14B8A6;"></div>
+                <span class="score-label">Spirituality</span>
+                <span class="score-value empty" id="summary-spirituality">—</span>
+            </div>
+            <div class="score-item" id="item-home" onclick="selectSegment('home')">
+                <div class="score-color" style="background: #3B82F6;"></div>
+                <span class="score-label">Home & Environment</span>
+                <span class="score-value empty" id="summary-home">—</span>
+            </div>
+            <div class="score-item" id="item-recreation" onclick="selectSegment('recreation')">
+                <div class="score-color" style="background: #EC4899;"></div>
+                <span class="score-label">Recreation & Fun</span>
+                <span class="score-value empty" id="summary-recreation">—</span>
+            </div>
+            <div class="score-item" id="item-health" onclick="selectSegment('health')">
+                <div class="score-color" style="background: #8B5CF6;"></div>
+                <span class="score-label">Health & Wellness</span>
+                <span class="score-value empty" id="summary-health">—</span>
+            </div>
+            <div class="score-item" id="item-finances" onclick="selectSegment('finances')">
+                <div class="score-color" style="background: #FF8200;"></div>
+                <span class="score-label">Finances</span>
+                <span class="score-value empty" id="summary-finances">—</span>
+            </div>
+        </div>
+
+        <!-- Total Score -->
+        <div class="total-score">
+            <span class="total-label">Life Balance Score</span>
+            <span class="total-value" id="totalScore">0</span>
+            <span class="total-max">/ 80</span>
+        </div>
+
+        <button class="reset-btn" onclick="resetWheel()">Reset Assessment</button>
+    </div>
+</div>
+
+<div class="section-divider"></div>
 
 <!-- The Framework Section -->
 <h2 onclick="toggleSection(this)">The Framework</h2>
@@ -516,19 +1008,204 @@
 </footer>
 
 <script>
+    // Section toggle
     function toggleSection(header) {
         header.classList.toggle('expanded');
         const content = header.nextElementSibling;
         content.classList.toggle('expanded');
     }
 
+    // Level toggle
     function toggleLevel(header) {
         header.classList.toggle('expanded');
         const content = header.nextElementSibling;
         content.classList.toggle('expanded');
     }
 
+    // Wheel of Life functionality
+    const cx = 220, cy = 220;
+    const maxRadius = 200;
+    
+    // Segment angles (in radians) - 8 equal segments of 45 degrees each
+    // Starting from top (12 o'clock) going clockwise
+    // Using consistent angle direction (all positive, 0 to 2π)
+    const segments = {
+        career:        { startAngle: -Math.PI/2,           endAngle: -Math.PI/4,          color: '#22C55E', name: 'Career & Work', score: null },
+        personal:      { startAngle: -Math.PI/4,           endAngle: 0,                   color: '#A16207', name: 'Personal Development', score: null },
+        relationships: { startAngle: 0,                    endAngle: Math.PI/4,           color: '#EAB308', name: 'Relationships', score: null },
+        spirituality:  { startAngle: Math.PI/4,            endAngle: Math.PI/2,           color: '#14B8A6', name: 'Spirituality', score: null },
+        home:          { startAngle: Math.PI/2,            endAngle: 3*Math.PI/4,         color: '#3B82F6', name: 'Home & Environment', score: null },
+        recreation:    { startAngle: 3*Math.PI/4,          endAngle: Math.PI,             color: '#EC4899', name: 'Recreation & Fun', score: null },
+        health:        { startAngle: Math.PI,              endAngle: 5*Math.PI/4,         color: '#8B5CF6', name: 'Health & Wellness', score: null },
+        finances:      { startAngle: 5*Math.PI/4,          endAngle: 3*Math.PI/2,         color: '#FF8200', name: 'Finances', score: null }
+    };
+
+    let selectedCategory = null;
+
+    // Generate SVG arc path
+    function describeArc(cx, cy, radius, startAngle, endAngle) {
+        const start = {
+            x: cx + radius * Math.cos(startAngle),
+            y: cy + radius * Math.sin(startAngle)
+        };
+        const end = {
+            x: cx + radius * Math.cos(endAngle),
+            y: cy + radius * Math.sin(endAngle)
+        };
+        const largeArcFlag = Math.abs(endAngle - startAngle) > Math.PI ? 1 : 0;
+        
+        return `M${cx},${cy} L${start.x},${start.y} A${radius},${radius} 0 ${largeArcFlag} 1 ${end.x},${end.y} Z`;
+    }
+
+    // Initialize rating buttons
+    function initRatingScale() {
+        const scale = document.getElementById('ratingScale');
+        scale.innerHTML = '';
+        for (let i = 1; i <= 10; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'rating-btn';
+            btn.textContent = i;
+            btn.onclick = () => setRating(i);
+            btn.id = `rating-btn-${i}`;
+            scale.appendChild(btn);
+        }
+    }
+
+    function selectSegment(category) {
+        selectedCategory = category;
+        const seg = segments[category];
+        
+        // Clear all selected states
+        document.querySelectorAll('.wheel-bg-segment').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.score-item').forEach(el => el.classList.remove('selected'));
+        
+        // Set selected state
+        document.getElementById(`bg-${category}`).classList.add('selected');
+        document.getElementById(`item-${category}`).classList.add('selected');
+        
+        // Update panel
+        document.getElementById('ratingTitle').textContent = seg.name;
+        document.getElementById('ratingPanel').classList.add('visible');
+        
+        // Update button colors and selection
+        const buttons = document.querySelectorAll('.rating-btn');
+        buttons.forEach((btn, idx) => {
+            const val = idx + 1;
+            if (seg.score === val) {
+                btn.classList.add('selected');
+                btn.style.background = seg.color;
+                btn.style.borderColor = seg.color;
+            } else {
+                btn.classList.remove('selected');
+                btn.style.background = 'rgba(255,255,255,0.05)';
+                btn.style.borderColor = 'rgba(255,255,255,0.25)';
+            }
+        });
+    }
+
+    function setRating(value) {
+        if (!selectedCategory) return;
+        
+        const seg = segments[selectedCategory];
+        seg.score = value;
+        
+        // Update the filled segment
+        updateFilledSegment(selectedCategory);
+        
+        // Update score text
+        updateScoreText(selectedCategory);
+        
+        // Update summary
+        updateSummary();
+        
+        // Update button visuals
+        const buttons = document.querySelectorAll('.rating-btn');
+        buttons.forEach((btn, idx) => {
+            const val = idx + 1;
+            if (val === value) {
+                btn.classList.add('selected');
+                btn.style.background = seg.color;
+                btn.style.borderColor = seg.color;
+            } else {
+                btn.classList.remove('selected');
+                btn.style.background = 'rgba(255,255,255,0.05)';
+                btn.style.borderColor = 'rgba(255,255,255,0.25)';
+            }
+        });
+    }
+
+    function updateFilledSegment(category) {
+        const seg = segments[category];
+        const fillEl = document.getElementById(`fill-${category}`);
+        
+        if (seg.score === null || seg.score === 0) {
+            fillEl.setAttribute('d', `M${cx},${cy} L${cx},${cy} A0,0 0 0,1 ${cx},${cy} Z`);
+            return;
+        }
+        
+        // Calculate radius based on score (1-10 maps to 20-200)
+        const radius = (seg.score / 10) * maxRadius;
+        
+        // Generate the arc path
+        const path = describeArc(cx, cy, radius, seg.startAngle, seg.endAngle);
+        fillEl.setAttribute('d', path);
+    }
+
+    function updateScoreText(category) {
+        const seg = segments[category];
+        const textEl = document.getElementById(`score-${category}`);
+        
+        if (seg.score !== null) {
+            textEl.textContent = seg.score;
+            textEl.classList.add('visible');
+        } else {
+            textEl.textContent = '';
+            textEl.classList.remove('visible');
+        }
+    }
+
+    function updateSummary() {
+        let total = 0;
+        
+        Object.keys(segments).forEach(key => {
+            const seg = segments[key];
+            const summaryEl = document.getElementById(`summary-${key}`);
+            
+            if (seg.score !== null) {
+                summaryEl.textContent = seg.score;
+                summaryEl.classList.remove('empty');
+                total += seg.score;
+            } else {
+                summaryEl.textContent = '—';
+                summaryEl.classList.add('empty');
+            }
+        });
+        
+        document.getElementById('totalScore').textContent = total;
+    }
+
+    function closeRatingPanel() {
+        document.getElementById('ratingPanel').classList.remove('visible');
+        document.querySelectorAll('.wheel-bg-segment').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.score-item').forEach(el => el.classList.remove('selected'));
+        selectedCategory = null;
+    }
+
+    function resetWheel() {
+        Object.keys(segments).forEach(key => {
+            segments[key].score = null;
+            updateFilledSegment(key);
+            updateScoreText(key);
+        });
+        updateSummary();
+        closeRatingPanel();
+    }
+
+    // Initialize
     document.addEventListener('DOMContentLoaded', function() {
+        initRatingScale();
+        
+        // Expand first section (Wheel of Life)
         const firstSection = document.querySelector('h2');
         if (firstSection) {
             firstSection.classList.add('expanded');
